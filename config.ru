@@ -3,7 +3,7 @@ require 'json'
 require 'docker'
 require 'logger'
 
-Docker.url = ENV['DOCKER_HOST']||"unix:///docker.sock"
+Docker.url = "unix:///docker.sock"
 Docker.logger = Logger.new('log/docker.log')
 
 dispatch_logger = Logger.new('log/dispatch.log')
