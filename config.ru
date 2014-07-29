@@ -1,6 +1,7 @@
 require 'rack'
 require 'json'
 require 'docker'
+require 'logger'
 
 Docker.url = ENV['DOCKER_HOST']||"/docker.sock"
 Docker.logger = Logger.new('log/docker.log')
