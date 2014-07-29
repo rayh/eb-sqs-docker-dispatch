@@ -12,8 +12,12 @@ app = lambda do |env|
   begin
     request = Rack::Request.new(env)
     data = JSON.parse(request.body.read)
-    dispatch_logger.info "Dispatch job for image #{data['Image']} using Cmd #{data['Cmd']}"
 
+    dispatch_logger.info "Fetching image #{data['Image']}"
+    Docker::Image.create('fromImage' => data['Image'])
+
+
+    dispatch_logger.info "Dispatch job for image #{data['Image']} using Cmd #{data['Cmd']}"
     container = Docker::Container.create(data)
     container.start
   rescue => e
