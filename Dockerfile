@@ -16,6 +16,7 @@ RUN bundle install --system
 ADD . /app
 WORKDIR /app
 RUN rm -Rf vendor .bundle
+RUN mkdir -p /app/log
 
 VOLUME /docker.sock
 

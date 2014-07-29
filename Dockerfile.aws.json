@@ -6,4 +6,5 @@
       "ContainerDirectory": "/docker.sock"
     }
   ],
+  "Logging": "/app/log"
 }
