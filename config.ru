@@ -15,7 +15,9 @@ app = lambda do |env|
 
     container_ids = message.map do |data|
       dispatch_logger.info "Fetching image #{data['Image']}"
-      Docker::Image.create('fromImage' => data['Image'])
+      image, tag = data['Image'].split(/:/, 2)
+      tag = 'latest' if tag.nil?
+      Docker::Image.create('fromImage' => image, 'tag' => tag)
 
 
       dispatch_logger.info "Dispatch job for image #{data['Image']} using Cmd #{data['Cmd']}"
